@@ -2,33 +2,33 @@
 
 [ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://c7yiypumm6tac" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=1006541036]
 script = ExtResource("1_e2o6t")
 
-[node name="Icon2" type="Sprite2D" parent="." unique_id=1939347828]
-position = Vector2(896, 777.5)
-scale = Vector2(3.453125, 5.9453125)
+[node name="Background" type="Sprite2D" parent="." unique_id=1137387642]
+modulate = Color(0.35, 0.35, 0.35, 1)
+position = Vector2(983, 539)
+scale = Vector2(16.407034, 9.904161)
 texture = ExtResource("1_80nbo")
 
-[node name="Icon" type="Sprite2D" parent="." unique_id=846063234]
-position = Vector2(894, 289.00003)
-scale = Vector2(2.5703125, 2.5703125)
-texture = ExtResource("1_80nbo")
+[node name="GuestLine" type="Node2D" parent="." unique_id=1432906182]
 
 [node name="Table" type="Sprite2D" parent="." unique_id=1928580106]
 position = Vector2(579.0001, 984)
 scale = Vector2(9.1484375, 1.71875)
 texture = ExtResource("1_80nbo")
 
-[node name="OkayButton" type="Sprite2D" parent="Table" unique_id=268033643]
+[node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(-5.5747375, -43.636414)
-scale = Vector2(0.10930828, 0.58181816)
-texture = ExtResource("1_80nbo")
+position = Vector2(368.00003, 896.99994)
+scale = Vector2(2.8576238, 2.9440029)
 
-[node name="NotOkayButton" type="Sprite2D" parent="Table" unique_id=460762679]
+[node name="Reject" parent="." unique_id=1494534922 instance=ExtResource("3_feb5d")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(15.08453, -43.054565)
-scale = Vector2(0.10930828, 0.58181816)
-texture = ExtResource("1_80nbo")
+position = Vector2(637, 896.99994)
+scale = Vector2(2.8576238, 2.9440029)
+
+[node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
+position = Vector2(781, 1164)
