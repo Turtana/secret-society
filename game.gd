@@ -4,7 +4,7 @@ extends Node2D
 
 var guests: Array[Node2D] = []
 var number_of_guests := 10
-var guest_distance = 200
+var guest_distance := 200
 
 func _ready() -> void:
 	$Pass.pressed.connect(pass_pressed)
@@ -15,7 +15,7 @@ func _ready() -> void:
 		var guest_number = number_of_guests - i - 1
 		var new_guest = guest_template.instantiate()
 		$GuestLine.add_child(new_guest)
-		# drawn in reverse order to make the z-order work. Hopefully this won't backfire later...
+		# drawn in reverse order to make the z-order work. Looks ugly. Hopefully this won't backfire later...
 		new_guest.position = $JudgePosition.position + Vector2(number_of_guests * guest_distance - i * guest_distance - guest_distance, 0)
 		new_guest.scale *= 1 - guest_number * .1
 		# this has to be scaled, otherwise the line looks much thinner farther back
@@ -23,24 +23,27 @@ func _ready() -> void:
 		guests.append(new_guest)
 	guests.reverse() # NOW the first guy on the line is at the table
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
 func pass_pressed() -> void:
+	$Reject.can_press = false
+	$Pass.can_press = false
+	
 	var tween = create_tween()
 	var guest = guests.pop_front()
 	
 	advance_line()
 	
 	# guest leaves for Grey Docks
-	tween.tween_property(guest, "position", guest.position + Vector2(-2000, 0), 2.0)
+	tween.tween_property(guest, "position", guest.position + Vector2(-1200, 0), 1.0)
 	await tween.finished
 	guest.queue_free()
 	
+	$Reject.can_press = true
 	$Pass.can_press = true
 
 func reject_pressed() -> void:
+	$Reject.can_press = false
+	$Pass.can_press = false
+	
 	var tween = create_tween()
 	var guest = guests.pop_front()
 
@@ -54,7 +57,14 @@ func reject_pressed() -> void:
 	guest.queue_free()
 	
 	$Reject.can_press = true
+	$Pass.can_press = true
 
 func advance_line() -> void:
+	var goto_scale = Vector2.ONE
+	var goto_place = $JudgePosition.position
+	# I'm a genius.
 	for guest in guests:
-		pass
+		create_tween().tween_property(guest, "position", goto_place, 1.0)
+		create_tween().tween_property(guest, "scale", goto_scale, 1.0)
+		goto_place = guest.position
+		goto_scale = guest.scale

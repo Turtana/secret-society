@@ -9,7 +9,6 @@ func _ready() -> void:
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (event is InputEventMouseButton && event.pressed && can_press):
-		can_press = false
 		pressed.emit()
 		$Sprite.scale = .9 * orig_scale
 		await get_tree().create_timer(0.1).timeout
