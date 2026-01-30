@@ -6,12 +6,14 @@
 [node name="Guest" type="Node2D" unique_id=349460658]
 script = ExtResource("2_lkux6")
 
-[node name="Body" type="Sprite2D" parent="." unique_id=2099154267]
+[node name="Visual" type="Node2D" parent="." unique_id=582979579]
+
+[node name="Body" type="Sprite2D" parent="Visual" unique_id=2099154267]
 scale = Vector2(3.453125, 5.9453125)
 texture = ExtResource("1_qaney")
 offset = Vector2(2.3167422, -36.835743)
 
-[node name="Mask" type="Sprite2D" parent="." unique_id=1245883953]
+[node name="Mask" type="Sprite2D" parent="Visual" unique_id=1245883953]
 position = Vector2(-1.9999995, -660)
 scale = Vector2(2.5, 2.5)
 texture = ExtResource("1_qaney")

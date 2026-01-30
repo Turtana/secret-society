@@ -21,9 +21,12 @@ func _ready() -> void:
 		# this has to be scaled, otherwise the line looks much thinner farther back
 		guest_distance += 10
 		guests.append(new_guest)
-	guests.reverse() # NOW the first guy on the line is at the table
+	guests.reverse() # NOW the first guy on the line is at the table. All's well in the world.
 
 func pass_pressed() -> void:
+	if guests.is_empty():
+		return
+	
 	$Reject.can_press = false
 	$Pass.can_press = false
 	
@@ -34,6 +37,7 @@ func pass_pressed() -> void:
 	
 	# guest leaves for Grey Docks
 	tween.tween_property(guest, "position", guest.position + Vector2(-1200, 0), 1.0)
+	guest.walking = true
 	await tween.finished
 	guest.queue_free()
 	
@@ -41,6 +45,9 @@ func pass_pressed() -> void:
 	$Pass.can_press = true
 
 func reject_pressed() -> void:
+	if guests.is_empty():
+		return
+	
 	$Reject.can_press = false
 	$Pass.can_press = false
 	
@@ -50,9 +57,9 @@ func reject_pressed() -> void:
 	advance_line()
 
 	# guest drops out of the picture
-	tween.set_ease(Tween.EASE_OUT)
-	tween.set_trans(Tween.TRANS_QUAD)
-	tween.tween_property(guest, "position", guest.position + Vector2(0, 2000), 1.0)
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_QUART)
+	tween.tween_property(guest, "position", guest.position + Vector2(0, 2000), .6)
 	await tween.finished
 	guest.queue_free()
 	
@@ -62,9 +69,13 @@ func reject_pressed() -> void:
 func advance_line() -> void:
 	var goto_scale = Vector2.ONE
 	var goto_place = $JudgePosition.position
-	# I'm a genius.
 	for guest in guests:
+		#await get_tree().create_timer(.3).timeout
 		create_tween().tween_property(guest, "position", goto_place, 1.0)
 		create_tween().tween_property(guest, "scale", goto_scale, 1.0)
 		goto_place = guest.position
 		goto_scale = guest.scale
+		guest.start_walking()
+	await get_tree().create_timer(1.0).timeout
+	for guest in guests:
+		guest.walking = false
