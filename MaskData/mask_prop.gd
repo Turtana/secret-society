@@ -5,6 +5,7 @@ extends Node2D
 @export var prop_color : MaskProperties.PropColor
 @export var chance_for_empty : float = 0.1
 
+
 var prop_sprite : Sprite2D
 
 func _ready() -> void:
@@ -28,7 +29,7 @@ func set_color(color_key: MaskProperties.PropColor) -> void:
 		prop_sprite.modulate = col
 
 func set_random_color() -> void:
-	# Skip index 0 so that color is not set to empty
+	# Skip index 0 so that color is not set to empty on random.
 	var index : int = randi_range(1, MaskProperties.PropColor.size() - 1)
 	var color_key = MaskProperties.PropColor.values()[index]
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
@@ -55,13 +56,15 @@ func set_sprite(prop_key : MaskProperties.PropType) -> void:
 		MaskProperties.PropType.HORNS:
 			index = randi_range(0, MaskProperties.HORN_SPRITES.size() - 1)
 			sprite_path = MaskProperties.HORN_SPRITES[index]
-
 		MaskProperties.PropType.NOSE:
-			pass
+			index = randi_range(0,MaskProperties.NOSE_SPRITES.size() - 1 )
+			sprite_path = MaskProperties.NOSE_SPRITES[index]
 		MaskProperties.PropType.HAT:
-			pass
+			index = randi_range(0, MaskProperties.HAT_SPRITES.size() - 1)
+			sprite_path = MaskProperties.HAT_SPRITES[index]
 		MaskProperties.PropType.HAIR :
-			pass
+			index = randi_range(0, MaskProperties.HAIR_SPRITES.size() - 1)
+			sprite_path = MaskProperties.HAIR_SPRITES[index]
 	if sprite_path != "" :
 		prop_sprite.texture = load(sprite_path)
 	else :
