@@ -49,5 +49,5 @@ const HAIR_SPRITES : Array = ["res://MaskData/Sprites/Hair.png"]
 
 const PROP_COLOR_DICT: Dictionary = {
 PropColor.RED : Color.DARK_RED,
-PropColor.BLUE : Color.MIDNIGHT_BLUE,
+PropColor.BLUE : Color.ROYAL_BLUE,
 PropColor.WHITE : Color.WHITE}
