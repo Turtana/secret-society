@@ -8,11 +8,9 @@
 script = ExtResource("1_uji8m")
 
 [node name="MaskSprite" type="Sprite2D" parent="." unique_id=1167831919]
-position = Vector2(112, 79)
 texture = ExtResource("1_w4tmb")
 
 [node name="Props" type="Node2D" parent="." unique_id=1939124900]
-position = Vector2(112, 79)
 
 [node name="MaskProp" parent="Props" unique_id=163137435 instance=ExtResource("2_uji8m")]
 position = Vector2(-21, 3)
