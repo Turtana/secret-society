@@ -1,0 +1,214 @@
+[gd_scene format=3 uid="uid://dmrldqdwgvfk3"]
+
+[ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://c7yiypumm6tac" path="res://game.gd" id="1_e2o6t"]
+[ext_resource type="Texture2D" uid="uid://5dl0cpdjt2di" path="res://prototausta1920x1080.01.png" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
+
+[node name="Game" type="Node2D" unique_id=1006541036]
+script = ExtResource("1_e2o6t")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1137387642]
+modulate = Color(0.62, 0.62, 0.62, 1)
+position = Vector2(960, 540)
+texture = ExtResource("2_fc0e3")
+metadata/_edit_lock_ = true
+
+[node name="GuestLine" type="Node2D" parent="." unique_id=1432906182]
+editor_description = "Just for z-ordering, all guests are child of this"
+
+[node name="Table" type="Sprite2D" parent="." unique_id=1928580106]
+position = Vector2(579.0001, 984)
+scale = Vector2(9.1484375, 1.71875)
+texture = ExtResource("1_80nbo")
+
+[node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
+modulate = Color(0, 1, 0, 1)
+position = Vector2(368.00003, 896.99994)
+scale = Vector2(2.8576238, 2.9440029)
+
+[node name="Reject" parent="." unique_id=1494534922 instance=ExtResource("3_feb5d")]
+modulate = Color(1, 0, 0, 1)
+position = Vector2(637, 896.99994)
+scale = Vector2(2.8576238, 2.9440029)
+
+[node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
+position = Vector2(781, 1164)
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1725131374]
+
+[node name="Rules" type="Panel" parent="." unique_id=459566737]
+offset_right = 415.0
+offset_bottom = 519.0
+
+[node name="Text" type="RichTextLabel" parent="Rules" unique_id=902152027]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -181.5
+offset_top = -233.5
+offset_right = 181.5
+offset_bottom = 233.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "TODAY'S RULES
+
+- just follow your gut
+- drop em if you don't like their face"
+horizontal_alignment = 1
+
+[node name="Fails" type="Label" parent="Rules" unique_id=493865586]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 519.0
+offset_right = 289.0
+offset_bottom = 590.0
+theme_override_font_sizes/font_size = 48
+text = "Fails: 0"
+
+[node name="Info" type="Label" parent="." unique_id=1027513879]
+offset_left = 477.0
+offset_right = 1502.0
+offset_bottom = 189.0
+theme_override_font_sizes/font_size = 64
+text = "FYI"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Clock" type="Panel" parent="." unique_id=290087183]
+offset_left = 781.0
+offset_top = 829.0
+offset_right = 1070.0
+offset_bottom = 940.0
+
+[node name="Time" type="Label" parent="Clock" unique_id=375855363]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="Clock" unique_id=1706216465]
+wait_time = 45.0
+one_shot = true
+autostart = true
+
+[node name="GameOver" type="Panel" parent="." unique_id=254517100]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Over" type="RichTextLabel" parent="GameOver" unique_id=56844490]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -483.0
+offset_top = -196.0
+offset_right = 542.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 72
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Text" type="RichTextLabel" parent="GameOver" unique_id=209377436]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -483.0
+offset_top = -12.0
+offset_right = 542.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 72
+text = "You simply suck"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TutorialButton" type="Button" parent="." unique_id=612787975]
+offset_left = 447.0
+offset_top = 26.0
+offset_right = 552.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 64
+text = "  ?  "
+
+[node name="Tutorial" type="Panel" parent="." unique_id=817633911]
+visible = false
+self_modulate = Color(1, 0.24000001, 0.24000001, 1)
+offset_left = 199.0
+offset_top = 189.0
+offset_right = 1721.0
+offset_bottom = 897.0
+
+[node name="Text" type="RichTextLabel" parent="Tutorial" unique_id=263884444]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -671.0
+offset_top = -297.0
+offset_right = 681.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "The Shadow Society has hired you as their bouncer.
+
+Every member wears a mask, which must fulfill the requirements for the current day's ritual. Spies also try to infiltrate the society, having bought bootleg carnival masks from nearby stalls. They seem to never find a passable mask, not even by luck.
+
+Your job is to root out the spies and let legit members in. Check if the mask abides by the rules, then either PASS or REJECT the guest by pressing the corresponding button.
+
+Hurry up, the ritual will start soon."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Tutorial" unique_id=1320836503]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.5
+offset_top = -130.0
+offset_right = 56.5
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "OK"
+
+[connection signal="timeout" from="Clock/Timer" to="." method="game_over" binds= ["The ritual has started"]]
+[connection signal="pressed" from="TutorialButton" to="." method="show_tutorial"]
+[connection signal="pressed" from="Tutorial/Button" to="." method="close_tutorial"]

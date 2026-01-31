@@ -10,13 +10,20 @@ config_version=5
 
 [application]
 
-config/name="Secret Society"
+config/name="Shadow Society"
+run/main_scene="uid://dmrldqdwgvfk3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="viewport"
+
 [dotnet]
 
-project/assembly_name="Secret Society"
+project/assembly_name="Shadow Society"
 
 [physics]
 
