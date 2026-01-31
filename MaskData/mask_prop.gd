@@ -7,7 +7,7 @@ extends Node2D
 
 var is_empty : bool
 
-var prop_sprite : Sprite2D
+@export var prop_sprite : Sprite2D
 
 func _ready() -> void:
 	prop_sprite = get_node("Sprite")

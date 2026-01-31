@@ -11,9 +11,14 @@ var propNode : Node2D
 
 func _ready() -> void:
 	mask_sprite = get_node("MaskSprite")
+	set_mask_sprite()
 	set_random_color()
 	propNode = get_node("Props")
 	get_all_mask_properties() # not in use
+
+func set_mask_sprite() -> void :
+	var mask_sprite_path : String = MaskProperties.MASK_SPRITES.pick_random()
+	mask_sprite.texture = load(mask_sprite_path)
 
 func set_random_color() -> void:
 	# Skip index 0 so that empty color is not being set by random.
