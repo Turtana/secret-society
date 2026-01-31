@@ -4,7 +4,7 @@
    height="128"
    version="1.1"
    id="svg6"
-   sodipodi:docname="icon.svg"
+   sodipodi:docname="icon_masked.svg"
    inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -40,11 +40,6 @@
      stroke-width="4"
      rx="14"
      id="rect1" />
-  <path
-     style="fill:#282828;fill-opacity:1"
-     d="M 22.927,72.114 44.065408,80.295 61.105,72.922 h 5.858 L 81.334095,80.295 105.141,72.114 V 59.994 L 84.739,52.44803 64,61.6605 44.858359,52.108194 22.927,59.994 Z"
-     id="path6"
-     sodipodi:nodetypes="cccccccccccc" />
   <g
      fill="#fff"
      transform="translate(12.322 12.322)scale(.101)"
@@ -70,6 +65,11 @@
        r="90"
        id="circle4" />
   </g>
+  <path
+     style="fill:#282828;fill-opacity:1"
+     d="M 22.927,72.114 44.065408,80.295 61.105,72.922 h 5.858 L 81.334095,80.295 105.141,72.114 V 59.994 L 84.739,52.44803 64,61.6605 44.858359,52.108194 22.927,59.994 Z"
+     id="path6"
+     sodipodi:nodetypes="cccccccccccc" />
   <g
      fill="#414042"
      transform="translate(12.322 12.322)scale(.101)"
@@ -78,11 +78,25 @@
        cx="307"
        cy="532"
        r="60"
-       id="circle5" />
+       id="circle5"
+       style="fill:#e6e6e6" />
     <circle
        cx="717"
        cy="532"
        r="60"
-       id="circle6" />
+       id="circle6"
+       style="fill:#e6e6e6" />
   </g>
+  <circle
+     style="fill:#4d4d4d;fill-opacity:1"
+     id="path7"
+     cx="84.738998"
+     cy="66.054001"
+     r="3.3307602" />
+  <circle
+     style="fill:#4d4d4d;fill-opacity:1"
+     id="circle7"
+     cx="43.328999"
+     cy="66.054001"
+     r="3.3307602" />
 </svg>
