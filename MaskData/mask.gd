@@ -4,8 +4,8 @@ extends Node2D
 var mask_sprite : Sprite2D
 var base_color : MaskProperties.PropColor
 
-var all_properties : Array
-var all_colors : Array
+var all_properties : Array # not in use
+var all_colors : Array # not in use
 var propNode : Node2D
 
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 	mask_sprite = get_node("MaskSprite")
 	set_random_color()
 	propNode = get_node("Props")
-	get_all_mask_properties()
+	get_all_mask_properties() # not in use
 
 func set_random_color() -> void:
 	# Skip index 0 so that empty color is not being set by random.
@@ -32,6 +32,7 @@ func set_mask_prop(type : MaskProperties.PropType, prop_color : MaskProperties.P
 			mask_prop.set_prop_type(type)
 			mask_prop.set_color(prop_color)
 
+# not in use
 func get_all_mask_properties() -> void:
 	for node in propNode.get_children():
 		var mask_prop: MaskProp = node as MaskProp
@@ -41,10 +42,16 @@ func get_all_mask_properties() -> void:
 
 ## Return true if mask has the given prop type anywhere.
 func has_prop_type(prop_type : MaskProperties.PropType) -> bool :
-	for prop in all_properties :
-		if prop == prop_type :
+	for node in propNode.get_children() :
+		var mask_prop: MaskProp = node as MaskProp
+		if mask_prop != null && !mask_prop.is_empty && mask_prop.prop_type == prop_type :
 			return true
 	return false
+
+	#for prop in all_properties :
+	#	if prop == prop_type :
+	#		return true
+	#return false
 
 ## Return true if any mask prop has the given color.
 func has_prop_color(prop_color : MaskProperties.PropColor) -> bool :
@@ -59,6 +66,6 @@ func has_prop_color(prop_color : MaskProperties.PropColor) -> bool :
 func has_prop_combo(prop_type : MaskProperties.PropType, prop_color : MaskProperties.PropColor) -> bool:
 	for node in propNode.get_children():
 		var mask_prop: MaskProp = node as MaskProp
-		if mask_prop != null && mask_prop.prop_color == prop_color && mask_prop.prop_type == prop_type:
+		if mask_prop != null && !mask_prop.is_empty && mask_prop.prop_color == prop_color && mask_prop.prop_type == prop_type:
 			return true
 	return false

@@ -13,6 +13,9 @@ func _ready() -> void:
 	prop_sprite = get_node("Sprite")
 	set_random_color()
 	set_sprite(prop_type)
+	# Randomize empty slots
+	if randf() <= chance_for_empty:
+		set_color(MaskProperties.PropColor.NO)
 
 func set_prop_type(type : MaskProperties.PropType) -> void :
 	prop_type = type
@@ -46,7 +49,7 @@ func set_sprite(prop_key : MaskProperties.PropType) -> void:
 	var sprite_path: String = ""
 	var index : int = 0
 	match prop_key :
-		MaskProperties.PropType.EMPTY:
+		MaskProperties.PropType.EMPTY: # not in use
 			pass
 		MaskProperties.PropType.EYES:
 			index = randi_range(0, MaskProperties.EYE_SPRITES.size() - 1)
