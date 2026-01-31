@@ -9,8 +9,6 @@ var is_member := true
 func _ready() -> void:
 	$Visual/Mask.rotation_degrees += 15 * (randf() * 2 - 1)
 	
-	if randf() < .3:
-		is_member = false
 
 func _process(_delta: float) -> void:
 	if not jumping and not walking:
