@@ -27,12 +27,12 @@ texture = ExtResource("3_7jktm")
 
 [node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(368.00003, 896.99994)
+position = Vector2(366, 986)
 scale = Vector2(2.8576238, 2.9440029)
 
 [node name="Reject" parent="." unique_id=1494534922 instance=ExtResource("3_feb5d")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(637, 896.99994)
+position = Vector2(635, 986)
 scale = Vector2(2.8576238, 2.9440029)
 
 [node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
