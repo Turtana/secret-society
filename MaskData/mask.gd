@@ -16,7 +16,8 @@ func _ready() -> void:
 	get_all_mask_properties()
 
 func set_random_color() -> void:
-	var index : int = randi_range(0, MaskProperties.PropColor.size() - 1)
+	# Skip index 0 so that empty color is not being set by random.
+	var index : int = randi_range(1, MaskProperties.PropColor.size() - 1)
 	var color_key = MaskProperties.PropColor.values()[index]
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
