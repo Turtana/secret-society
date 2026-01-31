@@ -29,6 +29,7 @@ func set_mask_prop(type : MaskProperties.PropType, prop_color : MaskProperties.P
 	for node in propNode.get_children():
 		var mask_prop: MaskProp = node as MaskProp
 		if mask_prop != null && mask_prop.prop_type == type :
+			mask_prop.is_empty = false # set this to false here in case it's randomly empty. Will flip back later.
 			mask_prop.set_prop_type(type)
 			mask_prop.set_color(prop_color)
 

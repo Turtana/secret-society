@@ -31,6 +31,7 @@ func set_color(color_key: MaskProperties.PropColor) -> void:
 		return
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
+		prop_sprite.show()
 		prop_color = color_key
 		prop_sprite.modulate = col
 
