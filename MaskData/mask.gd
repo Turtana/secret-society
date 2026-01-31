@@ -23,6 +23,12 @@ func set_random_color() -> void:
 		mask_sprite.modulate = col
 		base_color = color_key
 
+func set_mask_prop(type : MaskProperties.PropType, prop_color : MaskProperties.PropColor):
+	for node in propNode.get_children():
+		var mask_prop: MaskProp = node as MaskProp
+		if mask_prop != null && mask_prop.prop_type == type :
+			mask_prop.set_prop_type(type)
+			mask_prop.set_color(prop_color)
 
 func get_all_mask_properties() -> void:
 	for node in propNode.get_children():

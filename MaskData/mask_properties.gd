@@ -1,8 +1,8 @@
 class_name MaskProperties
 extends Node
 
-enum PropType {EYES, EARS, NOSE, MOUTH, HORNS, HAT}
-enum PropColor {RED, BLUE, GREEN}
+enum PropType {EMPTY, EYES, EARS, NOSE, MOUTH, HORNS, HAT, HAIR}
+enum PropColor {EMPTY, RED, BLUE, GREEN}
 
 const EYE_SPRITES : Array = [
 "res://MaskData/Sprites/Eye1.png",
