@@ -13,6 +13,7 @@ func _ready() -> void:
 	$Pass.pressed.connect(pass_pressed)
 	$Reject.pressed.connect(reject_pressed)
 	$Info.hide()
+	$Tutorial.hide()
 	fails = 0
 	
 	# generate guests
@@ -101,8 +102,6 @@ func advance_line() -> void:
 func generate_rules():
 	var prop_types = MaskProperties.PropType.keys()
 	var colors = MaskProperties.PropColor.keys()
-	print(prop_types)
-	print(colors)
 	
 	var rules = "TODAY'S RULES\n\n"
 	for i in range(number_of_rules):
@@ -132,7 +131,16 @@ func add_fail():
 func game_over(text: String) -> void:
 	$Reject.can_press = false
 	$Pass.can_press = false
-	$Clock/Timer.stop()
+	$Clock/Timer.paused = true
 	
 	$GameOver/Text.text = text
 	$GameOver.show()
+
+func show_tutorial() -> void:
+	$Tutorial.show()
+	$Clock/Timer.paused = true
+
+
+func close_tutorial() -> void:
+	$Tutorial.hide()
+	$Clock/Timer.paused = false

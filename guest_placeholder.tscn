@@ -16,5 +16,5 @@ texture = ExtResource("2_0gcqr")
 offset = Vector2(2.3167422, -36.835743)
 
 [node name="Mask" parent="Visual" unique_id=391241167 instance=ExtResource("3_0gcqr")]
-position = Vector2(3, -777)
+position = Vector2(5, -774)
 scale = Vector2(1.5, 1.5)

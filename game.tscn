@@ -75,7 +75,7 @@ offset_left = 477.0
 offset_right = 1502.0
 offset_bottom = 189.0
 theme_override_font_sizes/font_size = 64
-text = "YOU FUCKED UP"
+text = "FYI"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -152,4 +152,63 @@ text = "You simply suck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="TutorialButton" type="Button" parent="." unique_id=612787975]
+offset_left = 447.0
+offset_top = 26.0
+offset_right = 552.0
+offset_bottom = 122.0
+theme_override_font_sizes/font_size = 64
+text = "  ?  "
+
+[node name="Tutorial" type="Panel" parent="." unique_id=817633911]
+visible = false
+self_modulate = Color(1, 0.24000001, 0.24000001, 1)
+offset_left = 199.0
+offset_top = 189.0
+offset_right = 1721.0
+offset_bottom = 897.0
+
+[node name="Text" type="RichTextLabel" parent="Tutorial" unique_id=263884444]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -671.0
+offset_top = -297.0
+offset_right = 681.0
+offset_bottom = 224.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+text = "The Shadow Society has hired you as their bouncer.
+
+Every member wears a mask, which must fulfill the requirements for the current day's ritual. Spies also try to infiltrate the society, having bought bootleg carnival masks from nearby stalls. They seem to never find a passable mask, not even by luck.
+
+Your job is to root out the spies and let legit members in. Check if the mask abides by the rules, then either PASS or REJECT the guest by pressing the corresponding button.
+
+Hurry up, the ritual will start soon."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="Tutorial" unique_id=1320836503]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -56.5
+offset_top = -130.0
+offset_right = 56.5
+offset_bottom = -46.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/outline_size = 4
+theme_override_font_sizes/font_size = 48
+text = "OK"
+
 [connection signal="timeout" from="Clock/Timer" to="." method="game_over" binds= ["The ritual has started"]]
+[connection signal="pressed" from="TutorialButton" to="." method="show_tutorial"]
+[connection signal="pressed" from="Tutorial/Button" to="." method="close_tutorial"]
