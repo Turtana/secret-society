@@ -19,7 +19,7 @@ func start_walking():
 	# the point of this function is to add a little randomness to the start of walking
 	# so that the guest don't all march in sync.
 	# between 0 - 0.2 sec
-	await get_tree().create_timer(randf() * .2).timeout
+	await get_tree().create_timer(randf() * .35).timeout
 	walking = true
 
 func jump():

@@ -6,11 +6,13 @@ var guests: Array[Node2D] = []
 var number_of_guests := 10
 var guest_distance := 200
 
+var number_of_rules := 3
+
 func _ready() -> void:
 	$Pass.pressed.connect(pass_pressed)
 	$Reject.pressed.connect(reject_pressed)
 	
-	# TODO a way of generating guests with proper masks
+	# generate guests
 	for i in range(number_of_guests):
 		var guest_number = number_of_guests - i - 1
 		var new_guest = guest_template.instantiate()
@@ -22,6 +24,8 @@ func _ready() -> void:
 		guest_distance += 10
 		guests.append(new_guest)
 	guests.reverse() # NOW the first guy on the line is at the table. All's well in the world.
+	
+	generate_rules()
 
 func pass_pressed() -> void:
 	if guests.is_empty():
@@ -70,7 +74,6 @@ func advance_line() -> void:
 	var goto_scale = Vector2.ONE
 	var goto_place = $JudgePosition.position
 	for guest in guests:
-		#await get_tree().create_timer(.3).timeout
 		create_tween().tween_property(guest, "position", goto_place, 1.0)
 		create_tween().tween_property(guest, "scale", goto_scale, 1.0)
 		goto_place = guest.position
@@ -79,3 +82,17 @@ func advance_line() -> void:
 	await get_tree().create_timer(1.0).timeout
 	for guest in guests:
 		guest.walking = false
+
+func generate_rules():
+	var prop_types := ["hat", "hair", "ears", "horns", "nose", "mouth"]
+	var colors := ["black", "white", "blue", "red", "green", "yellow", "orange", "purple"]
+	
+	var rules = "TODAY'S RULES\n\n"
+	for i in range(number_of_rules):
+		var color_if_any = colors.pop_at(randi() % colors.size())
+		var prop = prop_types.pop_at(randi() % prop_types.size())
+		var negative = " not" if randf() < .3 else ""
+		var prop_color = color_if_any + " " if randf() < .2 else ""
+		var rule = "- must" + negative + " have " + prop_color + prop + "\n"
+		rules += rule
+	$Rules/Text.text = rules
