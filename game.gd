@@ -7,10 +7,13 @@ var number_of_guests := 10
 var guest_distance := 200
 
 var number_of_rules := 3
+var fails := 0
 
 func _ready() -> void:
 	$Pass.pressed.connect(pass_pressed)
 	$Reject.pressed.connect(reject_pressed)
+	$Info.hide()
+	fails = 0
 	
 	# generate guests
 	for i in range(number_of_guests):
@@ -39,6 +42,10 @@ func pass_pressed() -> void:
 	
 	advance_line()
 	
+	if not guest.is_member:
+		info_player("THAT WAS A SPY!")
+		add_fail()
+	
 	# guest leaves for Grey Docks
 	tween.tween_property(guest, "position", guest.position + Vector2(-1200, 0), 1.0)
 	guest.walking = true
@@ -59,6 +66,10 @@ func reject_pressed() -> void:
 	var guest = guests.pop_front()
 
 	advance_line()
+	
+	if guest.is_member:
+		info_player("THAT WAS A REAL MEMBER!")
+		add_fail()
 
 	# guest drops out of the picture
 	tween.set_ease(Tween.EASE_IN)
@@ -92,7 +103,17 @@ func generate_rules():
 		var color_if_any = colors.pop_at(randi() % colors.size())
 		var prop = prop_types.pop_at(randi() % prop_types.size())
 		var negative = " not" if randf() < .3 else ""
-		var prop_color = color_if_any + " " if randf() < .2 else ""
+		var prop_color = color_if_any + " " if randf() < .3 else ""
 		var rule = "- must" + negative + " have " + prop_color + prop + "\n"
 		rules += rule
 	$Rules/Text.text = rules
+
+func info_player(text: String):
+	$Info.text = text
+	$Info.show()
+	await get_tree().create_timer(1.0).timeout
+	$Info.hide()
+
+func add_fail():
+	fails += 1
+	$Rules/Fails.text = "Fails: " + str(fails)

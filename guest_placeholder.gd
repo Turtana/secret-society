@@ -4,9 +4,14 @@ var jump_height = 50
 var jumping = false
 var walking = false
 
+var is_member := true
+
 func _ready() -> void:
 	$Visual/Mask.modulate = Color(randf(), randf(), randf())
 	$Visual/Mask.rotation_degrees += 15 * (randf() * 2 - 1)
+	
+	if randf() < .3:
+		is_member = false
 
 func _process(_delta: float) -> void:
 	if not jumping and not walking:
@@ -18,7 +23,6 @@ func _process(_delta: float) -> void:
 func start_walking():
 	# the point of this function is to add a little randomness to the start of walking
 	# so that the guest don't all march in sync.
-	# between 0 - 0.2 sec
 	await get_tree().create_timer(randf() * .35).timeout
 	walking = true
 
