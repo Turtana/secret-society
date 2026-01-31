@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://cbls2eadb18mc"]
+
+[ext_resource type="Script" uid="uid://dxx2pxrt2e2mg" path="res://MaskData/mask_tester.gd" id="1_tq7yl"]
+[ext_resource type="PackedScene" uid="uid://lmx80gjcvc1s" path="res://MaskData/mask.tscn" id="2_8ti6g"]
+
+[node name="Node2D" type="Node2D" unique_id=1215417416]
+script = ExtResource("1_tq7yl")
+
+[node name="Mask" parent="." unique_id=391241167 instance=ExtResource("2_8ti6g")]
+position = Vector2(-58, -60)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=73833997]

@@ -17,10 +17,11 @@ func _ready() -> void:
 
 func set_random_color() -> void:
 	var index : int = randi_range(0, MaskProperties.PropColor.size() - 1)
-	var color_key : int = MaskProperties.PropColor.values()[index]
+	var color_key = MaskProperties.PropColor.values()[index]
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
 		mask_sprite.modulate = col
+		base_color = color_key
 
 
 func get_all_mask_properties() -> void:
@@ -39,6 +40,8 @@ func has_prop_type(prop_type : MaskProperties.PropType) -> bool :
 
 ## Return true if any mask prop has the given color.
 func has_prop_color(prop_color : MaskProperties.PropColor) -> bool :
+	if base_color == prop_color :
+		return true
 	for col in all_colors :
 		if prop_color == col :
 			return true
@@ -48,6 +51,6 @@ func has_prop_color(prop_color : MaskProperties.PropColor) -> bool :
 func has_prop_combo(prop_type : MaskProperties.PropType, prop_color : MaskProperties.PropColor) -> bool:
 	for node in propNode.get_children():
 		var mask_prop: MaskProp = node as MaskProp
-		if mask_prop != null :
-			return mask_prop.prop_color == prop_color && mask_prop.prop_type == prop_type
+		if mask_prop != null && mask_prop.prop_color == prop_color && mask_prop.prop_type == prop_type:
+			return true
 	return false

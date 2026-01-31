@@ -16,13 +16,15 @@ func _ready() -> void:
 func set_color(color_key: MaskProperties.PropColor) -> void:
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
+		prop_color = color_key
 		prop_sprite.modulate = col
 
 func set_random_color() -> void:
 	var index : int = randi_range(0, MaskProperties.PropColor.size() - 1)
-	var color_key : int = MaskProperties.PropColor.values()[index]
+	var color_key = MaskProperties.PropColor.values()[index]
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
+		prop_color = color_key
 		prop_sprite.modulate = col
 
 
