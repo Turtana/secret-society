@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c511bacwkdgvt"]
 
 [ext_resource type="Script" uid="uid://c15s60xefvi3d" path="res://button.gd" id="1_n4tde"]
-[ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_r04n3"]
+[ext_resource type="Texture2D" uid="uid://boqkxsp4s1vr7" path="res://Assets/Jaa.nappi01.png" id="2_n4tde"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(14.319389, 73.89093)
@@ -10,12 +10,13 @@ size = Vector2(14.319389, 73.89093)
 script = ExtResource("1_n4tde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=813410997]
-position = Vector2(-0.054653168, -0.87268066)
+position = Vector2(-0.5333481, -28.87268)
 scale = Vector2(3.968228, 0.6230286)
 shape = SubResource("RectangleShape2D_e2o6t")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=12659370]
-scale = Vector2(0.4337602, 0.36248937)
-texture = ExtResource("1_r04n3")
+position = Vector2(-0.47869492, -25)
+scale = Vector2(0.4337602, 0.2890625)
+texture = ExtResource("2_n4tde")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

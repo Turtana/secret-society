@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmrldqdwgvfk3"]
 
 [ext_resource type="Script" uid="uid://c7yiypumm6tac" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://c5mawi7e34a6i" path="res://Assets/prototausta1920x1080.02.png" id="2_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://d3hrjamj3chnr" path="res://Assets/prototausta1920x1080.03.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dkucf5wge8rl3" path="res://Assets/table01.png" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
 [ext_resource type="AudioStream" uid="uid://byg6u7oj1jsic" path="res://Sounds/ShadowSocietyBGM.ogg" id="5_7jktm"]
@@ -11,9 +11,8 @@
 script = ExtResource("1_e2o6t")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1137387642]
-modulate = Color(1.1214738, 1.1287348, 1.8185359, 1)
 position = Vector2(960, 540)
-texture = ExtResource("2_fc0e3")
+texture = ExtResource("2_ryrav")
 metadata/_edit_lock_ = true
 
 [node name="GuestLine" type="Node2D" parent="." unique_id=1432906182]
@@ -27,12 +26,12 @@ texture = ExtResource("3_7jktm")
 
 [node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
 modulate = Color(0, 1, 0, 1)
-position = Vector2(368.00003, 896.99994)
+position = Vector2(366, 986)
 scale = Vector2(2.8576238, 2.9440029)
 
 [node name="Reject" parent="." unique_id=1494534922 instance=ExtResource("3_feb5d")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(637, 896.99994)
+position = Vector2(635, 986)
 scale = Vector2(2.8576238, 2.9440029)
 
 [node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
@@ -75,12 +74,12 @@ horizontal_alignment = 1
 
 [node name="Fails" type="Label" parent="Rules" unique_id=493865586]
 layout_mode = 0
-offset_left = 113.0
+offset_left = 66.0
 offset_top = 519.0
-offset_right = 289.0
+offset_right = 372.0
 offset_bottom = 590.0
 theme_override_font_sizes/font_size = 48
-text = "Fails: 0"
+text = "Mistakes: 0/3"
 
 [node name="Info" type="Label" parent="." unique_id=1027513879]
 offset_left = 477.0
@@ -174,6 +173,7 @@ text = "OK"
 
 [node name="GameOver" type="Panel" parent="." unique_id=254517100]
 visible = false
+self_modulate = Color(0, 0, 0, 1)
 offset_right = 1920.0
 offset_bottom = 1080.0
 
@@ -215,11 +215,34 @@ text = "You simply suck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DiffLabel" type="Label" parent="GameOver" unique_id=2029483357]
+layout_mode = 1
+offset_left = 552.0
+offset_top = 767.0
+offset_right = 726.0
+offset_bottom = 822.0
+theme_override_font_sizes/font_size = 40
+text = "Difficulty: 3 rules"
+
+[node name="Difficulty" type="HSlider" parent="GameOver" unique_id=92500007]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 0
+offset_left = 552.0
+offset_top = 829.0
+offset_right = 1052.0
+offset_bottom = 929.0
+min_value = 2.0
+max_value = 5.0
+value = 3.0
+tick_count = 4
+ticks_on_borders = true
+ticks_position = 2
+
 [node name="Button" type="Button" parent="GameOver" unique_id=367854845]
 layout_mode = 0
-offset_left = 839.0
+offset_left = 1108.0
 offset_top = 829.0
-offset_right = 1128.0
+offset_right = 1397.0
 offset_bottom = 927.0
 theme_override_font_sizes/font_size = 32
 text = "Retry"
@@ -234,5 +257,6 @@ text = "  ?  "
 
 [connection signal="timeout" from="Clock/Timer" to="." method="game_over" binds= ["The ritual has started"]]
 [connection signal="pressed" from="Tutorial/Button" to="." method="close_tutorial"]
+[connection signal="value_changed" from="GameOver/Difficulty" to="." method="difficulty_changed"]
 [connection signal="pressed" from="GameOver/Button" to="." method="restart"]
 [connection signal="pressed" from="TutorialButton" to="." method="show_tutorial"]
