@@ -12,7 +12,7 @@ var time = 90
 
 var guest_distance := 200
 
-var number_of_rules := 3
+var number_of_rules: int
 var rules = []
 var fails := 0
 
@@ -205,7 +205,7 @@ func info_player(text: String):
 
 func add_fail():
 	fails += 1
-	$Rules/Fails.text = "Fails: " + str(fails)
+	$Rules/Fails.text = "Mistakes: " + str(fails) + "/3"
 	
 	if fails == 3:
 		await get_tree().create_timer(1.0).timeout
