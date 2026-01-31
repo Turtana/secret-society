@@ -32,17 +32,22 @@ func set_sprite(prop_key : MaskProperties.PropType) -> void:
 	var sprite_path: String = ""
 	var index : int = 0
 	match prop_key :
-		MaskProperties.PropType.EYE:
+		MaskProperties.PropType.EYES:
 			index = randi_range(0, MaskProperties.EYE_SPRITES.size() - 1)
 			sprite_path = MaskProperties.EYE_SPRITES[index]
-		MaskProperties.PropType.EAR:
+		MaskProperties.PropType.EARS :
 			index = randi_range(0, MaskProperties.EAR_SPRITES.size() - 1)
 			sprite_path = MaskProperties.EAR_SPRITES[index]
 		MaskProperties.PropType.MOUTH:
 			index = randi_range(0, MaskProperties.MOUTH_SPRITES.size() - 1)
 			sprite_path = MaskProperties.MOUTH_SPRITES[index]
-		MaskProperties.PropType.HORN:
+		MaskProperties.PropType.HORNS:
 			index = randi_range(0, MaskProperties.HORN_SPRITES.size() - 1)
 			sprite_path = MaskProperties.HORN_SPRITES[index]
+
+		MaskProperties.PropType.NOSE:
+			pass
+		MaskProperties.PropType.HAT:
+			pass
 	if sprite_path != "" :
 		prop_sprite.texture = load(sprite_path)
