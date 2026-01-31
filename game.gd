@@ -6,7 +6,7 @@ var guests: Array[Node2D] = []
 var number_of_guests := 10
 var guest_distance := 200
 
-var number_of_rules := 3
+var number_of_rules := 4
 var fails := 0
 
 func _ready() -> void:
@@ -21,14 +21,18 @@ func _ready() -> void:
 		var new_guest = guest_template.instantiate()
 		$GuestLine.add_child(new_guest)
 		# drawn in reverse order to make the z-order work. Looks ugly. Hopefully this won't backfire later...
-		new_guest.position = $JudgePosition.position + Vector2(number_of_guests * guest_distance - i * guest_distance - guest_distance, 0)
-		new_guest.scale *= 1 - guest_number * .1
+		#new_guest.position = $JudgePosition.position + Vector2(number_of_guests * guest_distance - i * guest_distance - guest_distance, -.2 * guest_distance)
+		new_guest.position = $JudgePosition.position + Vector2(guest_number * guest_distance, 0)
+		#new_guest.scale *= 1 - guest_number * .1
 		# this has to be scaled, otherwise the line looks much thinner farther back
 		guest_distance += 10
 		guests.append(new_guest)
 	guests.reverse() # NOW the first guy on the line is at the table. All's well in the world.
 	
 	generate_rules()
+
+func _process(_delta: float) -> void:
+	$Clock/Time.text = str(int($Clock/Timer.time_left))
 
 func pass_pressed() -> void:
 	if guests.is_empty():
@@ -95,13 +99,16 @@ func advance_line() -> void:
 		guest.walking = false
 
 func generate_rules():
-	var prop_types := ["hat", "hair", "ears", "horns", "nose", "mouth"]
-	var colors := ["black", "white", "blue", "red", "green", "yellow", "orange", "purple"]
+	var prop_types = MaskProperties.PropType.keys()
+	var colors = MaskProperties.PropColor.keys()
+	print(prop_types)
+	print(colors)
 	
 	var rules = "TODAY'S RULES\n\n"
 	for i in range(number_of_rules):
-		var color_if_any = colors.pop_at(randi() % colors.size())
-		var prop = prop_types.pop_at(randi() % prop_types.size())
+		var color_if_any = colors[randi() % colors.size()].to_lower()
+		# can't have multiple rules concerning the same prop type, to avoid contradictions
+		var prop = prop_types.pop_at(randi() % prop_types.size()).to_lower()
 		var negative = " not" if randf() < .3 else ""
 		var prop_color = color_if_any + " " if randf() < .3 else ""
 		var rule = "- must" + negative + " have " + prop_color + prop + "\n"
@@ -117,3 +124,15 @@ func info_player(text: String):
 func add_fail():
 	fails += 1
 	$Rules/Fails.text = "Fails: " + str(fails)
+	
+	if fails == 3:
+		await get_tree().create_timer(1.0).timeout
+		game_over("You misidentified too many guests")
+
+func game_over(text: String) -> void:
+	$Reject.can_press = false
+	$Pass.can_press = false
+	$Clock/Timer.stop()
+	
+	$GameOver/Text.text = text
+	$GameOver.show()
