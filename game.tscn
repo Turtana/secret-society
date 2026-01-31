@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://dmrldqdwgvfk3"]
 
-[ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://c7yiypumm6tac" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="Texture2D" uid="uid://5dl0cpdjt2di" path="res://Assets/prototausta1920x1080.01.png" id="2_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://c5mawi7e34a6i" path="res://Assets/prototausta1920x1080.02.png" id="2_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dkucf5wge8rl3" path="res://Assets/table01.png" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
 
 [node name="Game" type="Node2D" unique_id=1006541036]
 script = ExtResource("1_e2o6t")
 
 [node name="Background" type="Sprite2D" parent="." unique_id=1137387642]
-modulate = Color(0.62, 0.62, 0.62, 1)
+modulate = Color(1.1214738, 1.1287348, 1.8185359, 1)
 position = Vector2(960, 540)
 texture = ExtResource("2_fc0e3")
 metadata/_edit_lock_ = true
@@ -18,9 +18,10 @@ metadata/_edit_lock_ = true
 editor_description = "Just for z-ordering, all guests are child of this"
 
 [node name="Table" type="Sprite2D" parent="." unique_id=1928580106]
-position = Vector2(579.0001, 984)
-scale = Vector2(9.1484375, 1.71875)
-texture = ExtResource("1_80nbo")
+self_modulate = Color(3.8529434, 3.8529434, 3.8529434, 1)
+position = Vector2(576.5, 987)
+scale = Vector2(2.2519531, 0.36328137)
+texture = ExtResource("3_7jktm")
 
 [node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
 modulate = Color(0, 1, 0, 1)
@@ -111,6 +112,7 @@ one_shot = true
 autostart = true
 
 [node name="Tutorial" type="Panel" parent="." unique_id=817633911]
+visible = false
 self_modulate = Color(0.03259791, 0.052465446, 0.2838502, 1)
 offset_left = 199.0
 offset_top = 189.0
@@ -134,7 +136,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[color=yellow]The Shadow Society[/color] has hired you as their bouncer.
 
-Every [color=green]MEMBER[/color] wears a mask, which fulfill the [color=cyan]RULES[/color] for the current day's ritual. 
+Every [color=green]MEMBER[/color] wears a mask, which fulfill the [color=cyan]RULES[/color] for today's ritual. 
 [color=red]SPIES[/color] will try to infiltrate the society, having bought bootleg carnival masks from nearby stalls. They seem to never find a passable mask, not even by luck.
 
 Your job is to root out the spies and let all real members in. Check if the guest's mask abides by the rules, then either [color=green]PASS[/color] or [color=red]REJECT[/color] them by pressing the corresponding button.
