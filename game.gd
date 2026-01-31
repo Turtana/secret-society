@@ -33,12 +33,12 @@ func _ready() -> void:
 		$GuestLine.add_child(new_guest)
 		
 		var colorlist = MaskProperties.PropColor.keys()
-		var proplist = MaskProperties.PropType.keys()
+		#var proplist = MaskProperties.PropType.keys()
 		
 		var mask: Mask = new_guest.get_node("Visual/Mask")
 		if new_guest.is_member:
 			# make the guest follow all rules
-			print("this is a member")
+			#print("this is a member")
 			for rule in rules:
 				if rule.size() == 1:
 					# set this prop at any color, except number 0 (empty)
@@ -46,13 +46,13 @@ func _ready() -> void:
 					
 					var color = (randi() % (colorlist.size() - 1)) + 1
 					mask.set_mask_prop(rule[0], color)
-					print("set " + proplist[rule[0]] + " to " + colorlist[color])
+					#print("set " + proplist[rule[0]] + " to " + colorlist[color])
 				if rule.size() == 2:
 					# set color to a specific prop
 					mask.set_mask_prop(rule[0], rule[1])
-					print("set " + proplist[rule[0]] + " to " + colorlist[rule[1]])
+					#print("set " + proplist[rule[0]] + " to " + colorlist[rule[1]])
 		else:
-			print("this is a spy")
+			#print("this is a spy")
 			# make the guest break a random rule, if by some miracle their mask was correct
 			var broken = rules.pick_random()
 			if broken.size() == 1:
@@ -154,9 +154,9 @@ func generate_rules():
 	prop_numbers.shuffle()
 	var take_rule_nr = 0
 	
-	var rules_text = "TODAY'S RULES\n\n"
+	var rules_text = "[color=cyan]TODAY'S RULES[/color]\n\n"
 	for i in range(number_of_rules):
-		var care_about_color = randf() < .5
+		var care_about_color = randf() < .8
 		
 		var color_number = randi() % colors_string.size()
 		var color_text = colors_string[color_number].to_lower()
