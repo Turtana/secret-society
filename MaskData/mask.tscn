@@ -1,44 +1,39 @@
 [gd_scene format=3 uid="uid://lmx80gjcvc1s"]
 
 [ext_resource type="Script" uid="uid://bb2s5iijjxnfh" path="res://MaskData/mask.gd" id="1_uji8m"]
-[ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_w4tmb"]
+[ext_resource type="Texture2D" uid="uid://b1ytp084wisk8" path="res://MaskData/Sprites/Props/maskbase4.png" id="2_3nhho"]
 [ext_resource type="PackedScene" uid="uid://c42620lbi3wvc" path="res://MaskData/mask_prop.tscn" id="2_uji8m"]
 
 [node name="Mask" type="Node2D" unique_id=391241167]
 script = ExtResource("1_uji8m")
 
 [node name="MaskSprite" type="Sprite2D" parent="." unique_id=1167831919]
-position = Vector2(126, 114)
-texture = ExtResource("1_w4tmb")
+texture = ExtResource("2_3nhho")
 
 [node name="Props" type="Node2D" parent="." unique_id=1939124900]
-position = Vector2(126, 114)
 
 [node name="MaskProp" parent="Props" unique_id=163137435 instance=ExtResource("2_uji8m")]
-position = Vector2(-32, -10)
 prop_type = 1
 prop_color = 1
 
 [node name="MaskProp2" parent="Props" unique_id=1055338854 instance=ExtResource("2_uji8m")]
-position = Vector2(-80, -9)
+position = Vector2(-197, -46)
 prop_type = 2
 prop_color = 1
 
 [node name="MaskProp3" parent="Props" unique_id=2102561388 instance=ExtResource("2_uji8m")]
-position = Vector2(-56, -62)
 prop_type = 5
 prop_color = 2
 
 [node name="MaskProp4" parent="Props" unique_id=110008003 instance=ExtResource("2_uji8m")]
-position = Vector2(-3, 39)
 prop_type = 4
 
 [node name="MaskProp6" parent="Props" unique_id=400586080 instance=ExtResource("2_uji8m")]
-position = Vector2(-1, -90)
+position = Vector2(0, -182)
 prop_type = 6
 
 [node name="MaskProp7" parent="Props" unique_id=1174399452 instance=ExtResource("2_uji8m")]
-position = Vector2(1, -52)
+position = Vector2(0, -155)
 prop_type = 7
 
 [node name="MaskProp8" parent="Props" unique_id=667129742 instance=ExtResource("2_uji8m")]
