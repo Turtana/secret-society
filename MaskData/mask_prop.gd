@@ -16,21 +16,14 @@ func _ready() -> void:
 func set_color(color_key: MaskProperties.PropColor) -> void:
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
-		var shade_mat := prop_sprite.material as ShaderMaterial
-		prop_sprite.material = shade_mat.duplicate()
-		prop_sprite.material.set_shader_parameter("tint_color", col)
-		#prop_sprite.modulate = col
+		prop_sprite.modulate = col
 
 func set_random_color() -> void:
 	var index : int = randi_range(0, MaskProperties.PropColor.size() - 1)
 	var color_key : int = MaskProperties.PropColor.values()[index]
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
-		var shade_mat := prop_sprite.material as ShaderMaterial
-		prop_sprite.material = shade_mat.duplicate()
-		prop_sprite.material.set_shader_parameter("tint_color", col)
-
-		#prop_sprite.modulate = col
+		prop_sprite.modulate = col
 
 
 func set_sprite(prop_key : MaskProperties.PropType) -> void:

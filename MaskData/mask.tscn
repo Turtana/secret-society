@@ -46,5 +46,3 @@ prop_type = 4
 [node name="MaskProp9" parent="Props" unique_id=1788455183 instance=ExtResource("2_uji8m")]
 position = Vector2(74, -40)
 prop_type = 4
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1765603765]

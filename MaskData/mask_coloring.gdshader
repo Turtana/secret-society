@@ -6,7 +6,8 @@ void fragment() {
     vec4 tex = texture(TEXTURE, UV);
 
     // How close the pixel is to white
-    float whiteness = step(0.95, min(min(tex.r, tex.g), tex.b));
+    //float whiteness = min(min(tex.r, tex.g), tex.b);
+	float whiteness = step(0.95, min(min(tex.r, tex.g), tex.b));
 
     // Mix original with tinted version based on whiteness
     vec3 tinted = tex.rgb * tint_color.rgb;

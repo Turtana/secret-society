@@ -2,15 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dat32y7mcgxjh" path="res://MaskData/mask_prop.gd" id="1_3ea5l"]
 [ext_resource type="Texture2D" uid="uid://b0grmeosd60o" path="res://MaskData/Sprites/Eye1.png" id="1_bfmqi"]
-[ext_resource type="Shader" uid="uid://d1gp5fc60mhke" path="res://MaskData/mask_coloring.gdshader" id="2_ijnd2"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vsxly"]
-shader = ExtResource("2_ijnd2")
-shader_parameter/tint_color = Color(1, 1, 1, 1)
 
 [node name="MaskProp" type="Node2D" unique_id=163137435]
 script = ExtResource("1_3ea5l")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=379110394]
-material = SubResource("ShaderMaterial_vsxly")
 texture = ExtResource("1_bfmqi")
