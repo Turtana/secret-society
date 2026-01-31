@@ -5,6 +5,7 @@ extends Node2D
 @export var prop_color : MaskProperties.PropColor
 @export var chance_for_empty : float = 0.1
 
+var is_empty : bool
 
 var prop_sprite : Sprite2D
 
@@ -20,8 +21,10 @@ func set_prop_type(type : MaskProperties.PropType) -> void :
 func set_color(color_key: MaskProperties.PropColor) -> void:
 	if color_key == MaskProperties.PropColor.EMPTY :
 		prop_color = color_key
-		prop_type = MaskProperties.PropType.EMPTY
-		set_sprite(prop_type)
+		is_empty = true
+		prop_sprite.hide()
+		#prop_type = MaskProperties.PropType.EMPTY
+		#set_sprite(prop_type)
 		return
 	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
 	if col is Color :
@@ -32,10 +35,11 @@ func set_random_color() -> void:
 	# Skip index 0 so that color is not set to empty on random.
 	var index : int = randi_range(1, MaskProperties.PropColor.size() - 1)
 	var color_key = MaskProperties.PropColor.values()[index]
-	var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
-	if col is Color :
-		prop_color = color_key
-		prop_sprite.modulate = col
+	set_color(color_key)
+	#var col = MaskProperties.PROP_COLOR_DICT.get(color_key)
+	#if col is Color :
+	#	prop_color = color_key
+	#	prop_sprite.modulate = col
 
 
 func set_sprite(prop_key : MaskProperties.PropType) -> void:
