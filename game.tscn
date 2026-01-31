@@ -174,6 +174,7 @@ text = "OK"
 
 [node name="GameOver" type="Panel" parent="." unique_id=254517100]
 visible = false
+self_modulate = Color(0, 0, 0, 1)
 offset_right = 1920.0
 offset_bottom = 1080.0
 
@@ -215,11 +216,34 @@ text = "You simply suck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DiffLabel" type="Label" parent="GameOver" unique_id=2029483357]
+layout_mode = 1
+offset_left = 552.0
+offset_top = 767.0
+offset_right = 726.0
+offset_bottom = 822.0
+theme_override_font_sizes/font_size = 40
+text = "Difficulty: 3 rules"
+
+[node name="Difficulty" type="HSlider" parent="GameOver" unique_id=92500007]
+custom_minimum_size = Vector2(500, 100)
+layout_mode = 0
+offset_left = 552.0
+offset_top = 829.0
+offset_right = 1052.0
+offset_bottom = 929.0
+min_value = 2.0
+max_value = 5.0
+value = 3.0
+tick_count = 4
+ticks_on_borders = true
+ticks_position = 2
+
 [node name="Button" type="Button" parent="GameOver" unique_id=367854845]
 layout_mode = 0
-offset_left = 839.0
+offset_left = 1108.0
 offset_top = 829.0
-offset_right = 1128.0
+offset_right = 1397.0
 offset_bottom = 927.0
 theme_override_font_sizes/font_size = 32
 text = "Retry"
@@ -234,5 +258,6 @@ text = "  ?  "
 
 [connection signal="timeout" from="Clock/Timer" to="." method="game_over" binds= ["The ritual has started"]]
 [connection signal="pressed" from="Tutorial/Button" to="." method="close_tutorial"]
+[connection signal="value_changed" from="GameOver/Difficulty" to="." method="difficulty_changed"]
 [connection signal="pressed" from="GameOver/Button" to="." method="restart"]
 [connection signal="pressed" from="TutorialButton" to="." method="show_tutorial"]

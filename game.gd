@@ -3,12 +3,16 @@ extends Node2D
 @export var guest_template: PackedScene = preload("res://guest_placeholder.tscn")
 
 var guests: Array[Node2D] = []
-var number_of_guests := 10
+
+### CONTROL PANEL ###
+var number_of_guests := 20
 var spy_percentage = 0.50
+var time = 90
+#####################
 
 var guest_distance := 200
 
-var number_of_rules := 4
+var number_of_rules := 3
 var rules = []
 var fails := 0
 
@@ -17,10 +21,13 @@ func _ready() -> void:
 	$Reject.pressed.connect(reject_pressed)
 	$Info.hide()
 	$Tutorial.hide()
+	$GameOver.hide()
 	fails = 0
 	
+	$Clock/Timer.start(time)
+	number_of_rules = Global.difficulty
+	
 	generate_rules()
-	#print(rules)
 	
 	# generate guests
 	for i in range(number_of_guests):
@@ -107,6 +114,9 @@ func pass_pressed() -> void:
 	
 	$Reject.can_press = true
 	$Pass.can_press = true
+	
+	if guests.size() == 0:
+		you_win()
 
 func reject_pressed() -> void:
 	if guests.is_empty():
@@ -135,6 +145,9 @@ func reject_pressed() -> void:
 	
 	$Reject.can_press = true
 	$Pass.can_press = true
+	
+	if guests.size() == 0:
+		you_win()
 
 func advance_line() -> void:
 	var goto_scale = Vector2.ONE
@@ -209,6 +222,20 @@ func game_over(text: String) -> void:
 	$GameOver/Text.text = text
 	$GameOver.show()
 
+func you_win() -> void:
+	$Reject.can_press = false
+	$Pass.can_press = false
+	$Clock/Timer.paused = true
+	$TutorialButton.disabled = true
+	
+	$Music.pitch_scale = 1.1
+	
+	$GameOver/Over.modulate = Color.GREEN
+	$GameOver/Text.modulate = Color.GREEN
+	$GameOver/Over.text = "FINISHED"
+	$GameOver/Text.text = "Time left: " + str(snapped($Clock/Timer.time_left, 0.01))
+	$GameOver.show()
+
 func show_tutorial() -> void:
 	$Tutorial.show()
 	$Clock/Timer.paused = true
@@ -219,3 +246,9 @@ func close_tutorial() -> void:
 
 func restart() -> void:
 	get_tree().reload_current_scene()
+
+
+func difficulty_changed(value: float) -> void:
+	var diff = int(value)
+	Global.difficulty = diff
+	$GameOver/DiffLabel.text = "Difficulty: " + str(diff) + " rules"
