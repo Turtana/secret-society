@@ -4,7 +4,7 @@ extends Node2D
 
 var guests: Array[Node2D] = []
 var number_of_guests := 10
-var spy_percentage = 0.30
+var spy_percentage = 0.50
 
 var guest_distance := 200
 
@@ -93,6 +93,8 @@ func pass_pressed() -> void:
 	
 	advance_line()
 	
+	guest.get_node("Pass").play()
+	
 	if not guest.is_member:
 		info_player("THAT WAS A SPY!")
 		add_fail()
@@ -115,6 +117,8 @@ func reject_pressed() -> void:
 	
 	var tween = create_tween()
 	var guest = guests.pop_front()
+	
+	guest.get_node("Death").play()
 
 	advance_line()
 	
@@ -135,6 +139,7 @@ func reject_pressed() -> void:
 func advance_line() -> void:
 	var goto_scale = Vector2.ONE
 	var goto_place = $JudgePosition.position
+	$Line.play()
 	for guest in guests:
 		create_tween().tween_property(guest, "position", goto_place, 1.0)
 		create_tween().tween_property(guest, "scale", goto_scale, 1.0)
@@ -199,6 +204,8 @@ func game_over(text: String) -> void:
 	$Clock/Timer.paused = true
 	$TutorialButton.disabled = true
 	
+	$Music.pitch_scale = .8
+	
 	$GameOver/Text.text = text
 	$GameOver.show()
 
@@ -209,3 +216,6 @@ func show_tutorial() -> void:
 func close_tutorial() -> void:
 	$Tutorial.hide()
 	$Clock/Timer.paused = false
+
+func restart() -> void:
+	get_tree().reload_current_scene()

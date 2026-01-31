@@ -6,8 +6,13 @@ var walking = false
 
 var is_member := true
 
+var passes: Array[String] = ["res://Sounds/lapaisy01.ogg", "res://Sounds/lapaisy02.ogg", "res://Sounds/lapaisy03.ogg"]
+var deaths: Array[String] = ["res://Sounds/pudotus01.ogg", "res://Sounds/pudotus02.ogg", "res://Sounds/pudotus03.ogg"]
+
 func _ready() -> void:
 	$Visual/Mask.rotation_degrees += 15 * (randf() * 2 - 1)
+	$Death.stream = load(deaths.pick_random())
+	$Pass.stream = load(passes.pick_random())
 
 func _process(_delta: float) -> void:
 	if not jumping and not walking:

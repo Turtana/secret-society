@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://c5mawi7e34a6i" path="res://Assets/prototausta1920x1080.02.png" id="2_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://dkucf5wge8rl3" path="res://Assets/table01.png" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
+[ext_resource type="AudioStream" uid="uid://byg6u7oj1jsic" path="res://Sounds/ShadowSocietyBGM.ogg" id="5_7jktm"]
+[ext_resource type="AudioStream" uid="uid://cbc0gr0arwsok" path="res://Sounds/JonoEtenee.ogg" id="5_ryrav"]
 
 [node name="Game" type="Node2D" unique_id=1006541036]
 script = ExtResource("1_e2o6t")
@@ -36,7 +38,15 @@ scale = Vector2(2.8576238, 2.9440029)
 [node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
 position = Vector2(781, 1164)
 
+[node name="Line" type="AudioStreamPlayer" parent="." unique_id=633194000]
+stream = ExtResource("5_ryrav")
+volume_db = -10.0
+
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1725131374]
+stream = ExtResource("5_7jktm")
+volume_db = -10.0
+autoplay = true
+parameters/looping = false
 
 [node name="Rules" type="Panel" parent="." unique_id=459566737]
 offset_right = 415.0
@@ -205,6 +215,15 @@ text = "You simply suck"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="GameOver" unique_id=367854845]
+layout_mode = 0
+offset_left = 839.0
+offset_top = 829.0
+offset_right = 1128.0
+offset_bottom = 927.0
+theme_override_font_sizes/font_size = 32
+text = "Retry"
+
 [node name="TutorialButton" type="Button" parent="." unique_id=612787975]
 offset_left = 447.0
 offset_top = 26.0
@@ -215,4 +234,5 @@ text = "  ?  "
 
 [connection signal="timeout" from="Clock/Timer" to="." method="game_over" binds= ["The ritual has started"]]
 [connection signal="pressed" from="Tutorial/Button" to="." method="close_tutorial"]
+[connection signal="pressed" from="GameOver/Button" to="." method="restart"]
 [connection signal="pressed" from="TutorialButton" to="." method="show_tutorial"]

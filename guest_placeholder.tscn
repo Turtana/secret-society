@@ -19,3 +19,7 @@ offset = Vector2(2.3167422, -36.835743)
 [node name="Mask" parent="Visual" unique_id=391241167 instance=ExtResource("3_0gcqr")]
 position = Vector2(17, -779)
 scale = Vector2(0.475, 0.475)
+
+[node name="Death" type="AudioStreamPlayer2D" parent="." unique_id=28983184]
+
+[node name="Pass" type="AudioStreamPlayer2D" parent="." unique_id=291501224]
