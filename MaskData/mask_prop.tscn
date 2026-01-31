@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c42620lbi3wvc"]
+
+[ext_resource type="Script" uid="uid://dat32y7mcgxjh" path="res://MaskData/mask_prop.gd" id="1_3ea5l"]
+[ext_resource type="Texture2D" uid="uid://b0grmeosd60o" path="res://MaskData/Sprites/Eye1.png" id="1_bfmqi"]
+
+[node name="MaskProp" type="Node2D" unique_id=163137435]
+script = ExtResource("1_3ea5l")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=379110394]
+texture = ExtResource("1_bfmqi")
