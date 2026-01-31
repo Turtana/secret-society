@@ -7,7 +7,6 @@ var walking = false
 var is_member := true
 
 func _ready() -> void:
-	$Visual/Mask.modulate = Color(randf(), randf(), randf())
 	$Visual/Mask.rotation_degrees += 15 * (randf() * 2 - 1)
 	
 	if randf() < .3:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://5dtkcwol7piq" path="res://icon.svg" id="1_qaney"]
 [ext_resource type="Script" uid="uid://d02w0vqd5iyh0" path="res://guest_placeholder.gd" id="2_lkux6"]
-[ext_resource type="Texture2D" uid="uid://0ap7fx0wwksu" path="res://icon_masked.svg" id="3_0gcqr"]
+[ext_resource type="PackedScene" uid="uid://lmx80gjcvc1s" path="res://MaskData/mask.tscn" id="3_0gcqr"]
 
 [node name="Guest" type="Node2D" unique_id=349460658]
 script = ExtResource("2_lkux6")
@@ -14,7 +14,6 @@ scale = Vector2(3.453125, 5.9453125)
 texture = ExtResource("1_qaney")
 offset = Vector2(2.3167422, -36.835743)
 
-[node name="Mask" type="Sprite2D" parent="Visual" unique_id=1245883953]
-position = Vector2(-1.9999995, -660)
+[node name="Mask" parent="Visual" unique_id=391241167 instance=ExtResource("3_0gcqr")]
+position = Vector2(4.000004, -669)
 scale = Vector2(2.5, 2.5)
-texture = ExtResource("3_0gcqr")
