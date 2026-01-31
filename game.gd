@@ -132,6 +132,7 @@ func game_over(text: String) -> void:
 	$Reject.can_press = false
 	$Pass.can_press = false
 	$Clock/Timer.paused = true
+	$TutorialButton.disabled = true
 	
 	$GameOver/Text.text = text
 	$GameOver.show()
@@ -139,7 +140,6 @@ func game_over(text: String) -> void:
 func show_tutorial() -> void:
 	$Tutorial.show()
 	$Clock/Timer.paused = true
-
 
 func close_tutorial() -> void:
 	$Tutorial.hide()
