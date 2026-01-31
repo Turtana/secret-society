@@ -1,15 +1,17 @@
 extends Area2D
 
 signal pressed
-var orig_pos: Vector2
 var can_press = true
 
+@export var visuals: SpriteFrames
+
 func _ready() -> void:
-	orig_pos = $Sprite.position
+	$Sprite.sprite_frames = visuals
+	$Sprite.frame = 0
 
 func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int) -> void:
 	if (event is InputEventMouseButton && event.pressed && can_press):
 		pressed.emit()
-		$Sprite.position.y += 20
+		$Sprite.frame = 1
 		await get_tree().create_timer(0.1).timeout
-		$Sprite.position = orig_pos
+		$Sprite.frame = 0

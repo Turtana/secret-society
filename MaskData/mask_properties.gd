@@ -19,7 +19,7 @@ const EYE_SPRITES : Array = [
 ]
 
 const EAR_SPRITES : Array = [
-"res://MaskData/Sprites/Ears.png"]
+"res://MaskData/Sprites/Props/ears1.png"]
 
 const NOSE_SPRITES : Array = [
 "res://MaskData/Sprites/Props/nose1.png",

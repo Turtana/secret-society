@@ -4,8 +4,56 @@
 [ext_resource type="Texture2D" uid="uid://d3hrjamj3chnr" path="res://Assets/prototausta1920x1080.03.png" id="2_ryrav"]
 [ext_resource type="Texture2D" uid="uid://dkucf5wge8rl3" path="res://Assets/table01.png" id="3_7jktm"]
 [ext_resource type="PackedScene" uid="uid://c511bacwkdgvt" path="res://button.tscn" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://bavujxmdcupkb" path="res://Assets/skullbookframe01.png" id="4_j5wjh"]
 [ext_resource type="AudioStream" uid="uid://byg6u7oj1jsic" path="res://Sounds/ShadowSocietyBGM.ogg" id="5_7jktm"]
 [ext_resource type="AudioStream" uid="uid://cbc0gr0arwsok" path="res://Sounds/JonoEtenee.ogg" id="5_ryrav"]
+[ext_resource type="Texture2D" uid="uid://1sqeu0ps1bsk" path="res://Assets/skullbookframe02.png" id="5_vef74"]
+[ext_resource type="Texture2D" uid="uid://ltw0qkt6r6eq" path="res://Assets/greenbuttonup.png" id="7_iotsf"]
+[ext_resource type="Texture2D" uid="uid://c7731w543snnw" path="res://Assets/greenbuttondown.png" id="8_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://dva57edjwr6an" path="res://Assets/redbuttonup.png" id="9_215e1"]
+[ext_resource type="Texture2D" uid="uid://2laamhdny7ed" path="res://Assets/redbuttondown.png" id="10_7sc4i"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hve3p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j5wjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vef74")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_80cx4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_iotsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lc2xo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_e8heu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7sc4i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D" unique_id=1006541036]
 script = ExtResource("1_e2o6t")
@@ -24,15 +72,21 @@ position = Vector2(576.5, 987)
 scale = Vector2(2.2519531, 0.36328137)
 texture = ExtResource("3_7jktm")
 
+[node name="Book" type="AnimatedSprite2D" parent="." unique_id=437449973]
+position = Vector2(475.00003, 811)
+scale = Vector2(1.2, 1)
+sprite_frames = SubResource("SpriteFrames_hve3p")
+frame_progress = 0.8118334
+
 [node name="Pass" parent="." unique_id=694192413 instance=ExtResource("3_feb5d")]
-modulate = Color(0, 1, 0, 1)
-position = Vector2(366, 986)
+position = Vector2(320.00003, 872.99994)
 scale = Vector2(2.8576238, 2.9440029)
+visuals = SubResource("SpriteFrames_80cx4")
 
 [node name="Reject" parent="." unique_id=1494534922 instance=ExtResource("3_feb5d")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(635, 986)
+position = Vector2(604.00006, 872.99994)
 scale = Vector2(2.8576238, 2.9440029)
+visuals = SubResource("SpriteFrames_e8heu")
 
 [node name="JudgePosition" type="Node2D" parent="." unique_id=1212954518]
 position = Vector2(781, 1164)

@@ -21,5 +21,5 @@ func _on_timer_timeout() -> void:
 func play_next_animation() -> void:
 	play(animations.pick_random())
 
-func _on_animation_finished(animation : String) -> void:
+func _on_animation_finished(_animation : String) -> void:
 	timer.start()

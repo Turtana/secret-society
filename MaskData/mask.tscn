@@ -22,7 +22,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskSprite:rotation")
+tracks/1/path = NodePath("Props/MaskSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -34,7 +34,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("MaskSprite:skew")
+tracks/2/path = NodePath("Props/MaskSprite:skew")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -58,7 +58,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("MaskSprite:scale")
+tracks/4/path = NodePath("Props/MaskSprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -85,8 +85,8 @@ resource_name = "face_away"
 length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MaskSprite:skew")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Props/MaskSprite:skew")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -98,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskSprite:rotation")
+tracks/1/path = NodePath("Props/MaskSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -109,7 +109,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Props:skew")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -133,8 +133,8 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MaskSprite:scale")
+tracks/4/enabled = false
+tracks/4/path = NodePath("Props/MaskSprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -145,7 +145,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Props:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -161,8 +161,8 @@ resource_name = "face_screen"
 length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MaskSprite:skew")
+tracks/0/enabled = false
+tracks/0/path = NodePath("Props/MaskSprite:skew")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -174,7 +174,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskSprite:rotation")
+tracks/1/path = NodePath("Props/MaskSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -185,7 +185,7 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = true
+tracks/2/enabled = false
 tracks/2/path = NodePath("Props:skew")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
@@ -209,8 +209,8 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("MaskSprite:scale")
+tracks/4/enabled = false
+tracks/4/path = NodePath("Props/MaskSprite:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -221,7 +221,7 @@ tracks/4/keys = {
 }
 tracks/5/type = "value"
 tracks/5/imported = false
-tracks/5/enabled = true
+tracks/5/enabled = false
 tracks/5/path = NodePath("Props:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
@@ -250,7 +250,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("MaskSprite:rotation")
+tracks/1/path = NodePath("Props/MaskSprite:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -271,18 +271,18 @@ _data = {
 [node name="Mask" type="Node2D" unique_id=391241167]
 script = ExtResource("1_uji8m")
 
-[node name="MaskSprite" type="Sprite2D" parent="." unique_id=1167831919]
-texture = ExtResource("2_3nhho")
-
 [node name="Props" type="Node2D" parent="." unique_id=1939124900]
+
+[node name="MaskProp2" parent="Props" unique_id=1055338854 instance=ExtResource("2_uji8m")]
+scale = Vector2(1.2, 1)
+prop_type = 2
+prop_color = 1
+
+[node name="MaskSprite" type="Sprite2D" parent="Props" unique_id=1167831919]
+texture = ExtResource("2_3nhho")
 
 [node name="MaskProp" parent="Props" unique_id=163137435 instance=ExtResource("2_uji8m")]
 prop_type = 1
-prop_color = 1
-
-[node name="MaskProp2" parent="Props" unique_id=1055338854 instance=ExtResource("2_uji8m")]
-position = Vector2(-197, -46)
-prop_type = 2
 prop_color = 1
 
 [node name="MaskProp3" parent="Props" unique_id=2102561388 instance=ExtResource("2_uji8m")]
@@ -293,10 +293,12 @@ prop_color = 2
 prop_type = 4
 
 [node name="MaskProp6" parent="Props" unique_id=400586080 instance=ExtResource("2_uji8m")]
+visible = false
 position = Vector2(0, -182)
 prop_type = 6
 
 [node name="MaskProp7" parent="Props" unique_id=1174399452 instance=ExtResource("2_uji8m")]
+visible = false
 position = Vector2(0, -155)
 prop_type = 7
 

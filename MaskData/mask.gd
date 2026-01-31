@@ -12,7 +12,7 @@ var propNode : Node2D
 
 
 func _ready() -> void:
-	mask_sprite = get_node("MaskSprite")
+	mask_sprite = get_node("Props/MaskSprite")
 	set_mask_sprite()
 	#set_random_color()
 	mask_sprite.modulate = mask_color

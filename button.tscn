@@ -1,22 +1,31 @@
 [gd_scene format=3 uid="uid://c511bacwkdgvt"]
 
 [ext_resource type="Script" uid="uid://c15s60xefvi3d" path="res://button.gd" id="1_n4tde"]
-[ext_resource type="Texture2D" uid="uid://boqkxsp4s1vr7" path="res://Assets/Jaa.nappi01.png" id="2_n4tde"]
+[ext_resource type="Texture2D" uid="uid://ltw0qkt6r6eq" path="res://Assets/greenbuttonup.png" id="2_n4tde"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
-size = Vector2(14.319389, 73.89093)
+[sub_resource type="CircleShape2D" id="CircleShape2D_n4tde"]
+radius = 24.205652
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n4tde"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n4tde")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Button" type="Area2D" unique_id=694192413]
 script = ExtResource("1_n4tde")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=813410997]
-position = Vector2(-0.5333481, -28.87268)
-scale = Vector2(3.968228, 0.6230286)
-shape = SubResource("RectangleShape2D_e2o6t")
+position = Vector2(-1.2056503, -5.009041)
+shape = SubResource("CircleShape2D_n4tde")
 
-[node name="Sprite" type="Sprite2D" parent="." unique_id=12659370]
-position = Vector2(-0.47869492, -25)
-scale = Vector2(0.4337602, 0.2890625)
-texture = ExtResource("2_n4tde")
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=749438653]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_n4tde")
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]

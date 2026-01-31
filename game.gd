@@ -22,6 +22,7 @@ func _ready() -> void:
 	$Info.hide()
 	$Tutorial.hide()
 	$GameOver.hide()
+	$Book.play("default")
 	fails = 0
 	
 	$Clock/Timer.start(time)
@@ -168,7 +169,15 @@ func generate_rules():
 	var colors_string = MaskProperties.PropColor.keys()
 	
 	# hardcoded the amount of props. Bad, but shall do
-	var prop_numbers = [1,2,3,4,5,6,7]
+	var prop_numbers = [
+		MaskProperties.PropType.EYES,
+		MaskProperties.PropType.EARS,
+		MaskProperties.PropType.NOSE,
+		MaskProperties.PropType.MOUTH,
+		MaskProperties.PropType.HORNS,
+		#MaskProperties.PropType.HAT,
+		#MaskProperties.PropType.HAIR,
+	]
 	prop_numbers.shuffle()
 	var take_rule_nr = 0
 	
