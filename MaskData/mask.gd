@@ -8,11 +8,14 @@ var all_properties : Array # not in use
 var all_colors : Array # not in use
 var propNode : Node2D
 
+@export var mask_color : Color = Color.SILVER
+
 
 func _ready() -> void:
 	mask_sprite = get_node("MaskSprite")
 	set_mask_sprite()
-	set_random_color()
+	#set_random_color()
+	mask_sprite.modulate = mask_color
 	propNode = get_node("Props")
 	get_all_mask_properties() # not in use
 
