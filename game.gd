@@ -4,9 +4,12 @@ extends Node2D
 
 var guests: Array[Node2D] = []
 var number_of_guests := 10
+var spy_percentage = 0.30
+
 var guest_distance := 200
 
 var number_of_rules := 4
+var rules = []
 var fails := 0
 
 func _ready() -> void:
@@ -16,11 +19,47 @@ func _ready() -> void:
 	$Tutorial.hide()
 	fails = 0
 	
+	generate_rules()
+	#print(rules)
+	
 	# generate guests
 	for i in range(number_of_guests):
 		var guest_number = number_of_guests - i - 1
 		var new_guest = guest_template.instantiate()
+		
+		if randf() < spy_percentage:
+			new_guest.is_member = false
+		
 		$GuestLine.add_child(new_guest)
+		
+		var mask: Mask = new_guest.get_node("Visual/Mask")
+		if new_guest.is_member:
+			# make the guest follow all rules
+			for rule in rules:
+				if rule.size() == 1:
+					# set this prop at any color, except number 0 (empty)
+					# e.g. must have horns
+					var color = (randi() % (MaskProperties.PropColor.keys().size() - 1)) + 1
+					mask.set_mask_prop(rule[0], color)
+				if rule.size() == 2:
+					# set color to a specific prop
+					mask.set_mask_prop(rule[0], rule[1])
+		else:
+			# make the guest break a random rule, if by some miracle their mask was correct
+			var broken = rules.pick_random()
+			if broken.size() == 1:
+				# must have horns -> set to "no horns"
+				mask.set_mask_prop(broken[0], MaskProperties.PropColor.NO)
+			if broken.size() == 2:
+				# must have blue eyes -> set to "some other color eyes"
+				var color = broken[1]
+				# avoid overflow error
+				if color == MaskProperties.PropColor.keys().size() - 1:
+					color -= 1
+				else:
+					color += 1
+				mask.set_mask_prop(broken[1], color)
+		
 		# drawn in reverse order to make the z-order work. Looks ugly. Hopefully this won't backfire later...
 		#new_guest.position = $JudgePosition.position + Vector2(number_of_guests * guest_distance - i * guest_distance - guest_distance, -.2 * guest_distance)
 		new_guest.position = $JudgePosition.position + Vector2(guest_number * guest_distance, 0)
@@ -30,7 +69,6 @@ func _ready() -> void:
 		guests.append(new_guest)
 	guests.reverse() # NOW the first guy on the line is at the table. All's well in the world.
 	
-	generate_rules()
 
 func _process(_delta: float) -> void:
 	$Clock/Time.text = str(int($Clock/Timer.time_left))
@@ -100,19 +138,32 @@ func advance_line() -> void:
 		guest.walking = false
 
 func generate_rules():
-	var prop_types = MaskProperties.PropType.keys()
-	var colors = MaskProperties.PropColor.keys()
+	var prop_types_string = MaskProperties.PropType.keys()
+	var colors_string = MaskProperties.PropColor.keys()
 	
-	var rules = "TODAY'S RULES\n\n"
+	var rules_text = "TODAY'S RULES\n\n"
 	for i in range(number_of_rules):
-		var color_if_any = colors[randi() % colors.size()].to_lower()
+		var care_about_color = randf() < .5
+		
+		var color_number = randi() % colors_string.size()
+		var color_text = colors_string[color_number].to_lower()
+		var prop_number = (randi() % (prop_types_string.size()-1))+1 # skip the first one, "empty"
+		var prop_text = prop_types_string[prop_number].to_lower()
+		
+		# save rules
+		if care_about_color:
+			rules.append([prop_number, color_number])
+		else:
+			rules.append([prop_number])
+		
 		# can't have multiple rules concerning the same prop type, to avoid contradictions
-		var prop = prop_types.pop_at(randi() % prop_types.size()).to_lower()
-		var negative = " not" if randf() < .3 else ""
-		var prop_color = color_if_any + " " if randf() < .3 else ""
-		var rule = "- must" + negative + " have " + prop_color + prop + "\n"
-		rules += rule
-	$Rules/Text.text = rules
+		prop_types_string.pop_at(prop_number)
+		
+		# print rules
+		var prop_color = color_text + " " if care_about_color else ""
+		var rule = "- must have " + prop_color + prop_text + "\n"
+		rules_text += rule
+	$Rules/Text.text = rules_text
 
 func info_player(text: String):
 	$Info.text = text

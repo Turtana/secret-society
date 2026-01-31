@@ -19,7 +19,7 @@ func set_prop_type(type : MaskProperties.PropType) -> void :
 	set_sprite(type)
 
 func set_color(color_key: MaskProperties.PropColor) -> void:
-	if color_key == MaskProperties.PropColor.EMPTY :
+	if color_key == MaskProperties.PropColor.NO :
 		prop_color = color_key
 		is_empty = true
 		prop_sprite.hide()
