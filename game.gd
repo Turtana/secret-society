@@ -32,19 +32,27 @@ func _ready() -> void:
 		
 		$GuestLine.add_child(new_guest)
 		
+		var colorlist = MaskProperties.PropColor.keys()
+		var proplist = MaskProperties.PropType.keys()
+		
 		var mask: Mask = new_guest.get_node("Visual/Mask")
 		if new_guest.is_member:
 			# make the guest follow all rules
+			print("this is a member")
 			for rule in rules:
 				if rule.size() == 1:
 					# set this prop at any color, except number 0 (empty)
 					# e.g. must have horns
-					var color = (randi() % (MaskProperties.PropColor.keys().size() - 1)) + 1
+					
+					var color = (randi() % (colorlist.size() - 1)) + 1
 					mask.set_mask_prop(rule[0], color)
+					print("set " + proplist[rule[0]] + " to " + colorlist[color])
 				if rule.size() == 2:
 					# set color to a specific prop
 					mask.set_mask_prop(rule[0], rule[1])
+					print("set " + proplist[rule[0]] + " to " + colorlist[rule[1]])
 		else:
+			print("this is a spy")
 			# make the guest break a random rule, if by some miracle their mask was correct
 			var broken = rules.pick_random()
 			if broken.size() == 1:
@@ -141,14 +149,20 @@ func generate_rules():
 	var prop_types_string = MaskProperties.PropType.keys()
 	var colors_string = MaskProperties.PropColor.keys()
 	
+	# hardcoded the amount of props. Bad, but shall do
+	var prop_numbers = [1,2,3,4,5,6,7]
+	prop_numbers.shuffle()
+	var take_rule_nr = 0
+	
 	var rules_text = "TODAY'S RULES\n\n"
 	for i in range(number_of_rules):
 		var care_about_color = randf() < .5
 		
 		var color_number = randi() % colors_string.size()
 		var color_text = colors_string[color_number].to_lower()
-		var prop_number = (randi() % (prop_types_string.size()-1))+1 # skip the first one, "empty"
+		var prop_number = prop_numbers[take_rule_nr]
 		var prop_text = prop_types_string[prop_number].to_lower()
+		take_rule_nr += 1
 		
 		# save rules
 		if care_about_color:
@@ -157,7 +171,7 @@ func generate_rules():
 			rules.append([prop_number])
 		
 		# can't have multiple rules concerning the same prop type, to avoid contradictions
-		prop_types_string.pop_at(prop_number)
+		#prop_types_string.pop_at(prop_number)
 		
 		# print rules
 		var prop_color = color_text + " " if care_about_color else ""

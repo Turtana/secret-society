@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://be36rq7nbjb5w"]
 
-[ext_resource type="Texture2D" uid="uid://cxiby2vtxe3pd" path="res://kaapu256x512.02.png" id="2_0gcqr"]
+[ext_resource type="Texture2D" uid="uid://cxiby2vtxe3pd" path="res://Assets/kaapu256x512.02.png" id="2_0gcqr"]
 [ext_resource type="Script" uid="uid://d02w0vqd5iyh0" path="res://guest_placeholder.gd" id="2_lkux6"]
 [ext_resource type="PackedScene" uid="uid://lmx80gjcvc1s" path="res://MaskData/mask.tscn" id="3_0gcqr"]
 
@@ -16,5 +16,5 @@ texture = ExtResource("2_0gcqr")
 offset = Vector2(2.3167422, -36.835743)
 
 [node name="Mask" parent="Visual" unique_id=391241167 instance=ExtResource("3_0gcqr")]
-position = Vector2(5, -774)
+position = Vector2(-168, -951)
 scale = Vector2(1.5, 1.5)
