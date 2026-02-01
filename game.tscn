@@ -99,7 +99,7 @@ volume_db = -10.0
 stream = ExtResource("5_7jktm")
 volume_db = -10.0
 autoplay = true
-parameters/looping = false
+parameters/looping = true
 
 [node name="Rules" type="Panel" parent="." unique_id=459566737]
 offset_right = 415.0
