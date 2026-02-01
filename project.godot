@@ -13,7 +13,7 @@ config_version=5
 config/name="Shadow Society"
 run/main_scene="uid://dmrldqdwgvfk3"
 config/features=PackedStringArray("4.6", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://dyh4e2ls8l42w"
 
 [autoload]
 
